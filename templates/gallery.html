@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Галерея</h1>
+  <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    {% for image in images %}
+      <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
+        <h3>{{ image.title }}</h3>
+        {% if image.image %}
+          <img src="{{ image.image.url }}" alt="{{ image.title }}" style="width: 100%;">
+        {% else %}
+          <p>[Зображення відсутнє]</p>
+        {% endif %}
+        <p>Дата: {{ image.created_date }}</p>
+        <a href="{% url 'image_detail' image.id %}">Переглянути</a>
+      </div>
+    {% empty %}
+      <p>Зображень немає.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
