@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ image.title }}</h1>
+  {% if image.image %}
+    <img src="{{ image.image.url }}" alt="{{ image.title }}" style="max-width: 100%;">
+  {% else %}
+    <p>[Зображення відсутнє]</p>
+  {% endif %}
+  <p>Дата: {{ image.created_date }}</p>
+  <p>Вікове обмеження: {{ image.age_limit }}+</p>
+  <a href="{% url 'gallery' %}">← Назад до галереї</a>
+{% endblock %}
